@@ -1,38 +1,576 @@
-.App {
-  text-align: center;
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Home Page Styles */
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fce7f3 0%, #e9d5ff 50%, #c7d2fe 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.floating-element {
+  position: absolute;
+  animation: float 6s ease-in-out infinite;
+  opacity: 0.2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.floating-icon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.home-content {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 32px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.welcome-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sparkle-icon {
+  width: 32px;
+  height: 32px;
+  color: #facc15;
+  animation: spin 2s linear infinite;
+}
+
+.welcome-title {
+  font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ec4899, #a855f7, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  color: #7c3aed;
+  font-weight: 500;
+}
+
+.time-card {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+
+.time-card:hover {
+  transform: scale(1.05);
+}
+
+.time-content {
+  text-align: center;
+}
+
+.time-display {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #6b21a8;
+  margin-bottom: 8px;
+}
+
+.date-display {
+  font-size: 1.125rem;
+  color: #9333ea;
+}
+
+.interactive-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.interactive-card {
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.interactive-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.love-card {
+  background: linear-gradient(135deg, #f9a8d4, #fb7185);
+}
+
+.memories-card {
+  background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+}
+
+.feelings-card {
+  background: linear-gradient(135deg, #fcd34d, #fb923c);
+}
+
+.card-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.interactive-icon {
+  width: 48px;
+  height: 48px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.heart-icon {
+  animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.camera-icon {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.brain-icon {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.interactive-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.interactive-description {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.footer-text {
+  color: #7c3aed;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Decorative Elements */
+.decoration {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.decoration-1 {
+  top: 40px;
+  left: 40px;
+  width: 80px;
+  height: 80px;
+  background: #fcd34d;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.decoration-2 {
+  top: 128px;
+  right: 80px;
+  width: 64px;
+  height: 64px;
+  background: #f9a8d4;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.decoration-3 {
+  bottom: 80px;
+  left: 80px;
+  width: 96px;
+  height: 96px;
+  background: #c4b5fd;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.decoration-4 {
+  bottom: 128px;
+  right: 128px;
+  width: 48px;
+  height: 48px;
+  background: #86efac;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+/* Page Styles */
+.page-container {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.love-theme {
+  background: linear-gradient(135deg, #f9a8d4, #fda4af, #fca5a5);
+}
+
+.memories-theme {
+  background: linear-gradient(135deg, #c4b5fd, #a5b4fc, #93c5fd);
+}
+
+.feelings-theme {
+  background: linear-gradient(135deg, #fcd34d, #fdba74, #fbbf24);
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-icon {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.description-text {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.random-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-weight: bold;
+  padding: 16px 32px;
+  border-radius: 50px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: none;
+  cursor: pointer;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+}
+
+.random-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+}
+
+.love-button {
+  background: linear-gradient(45deg, #f472b6, #ec4899);
+}
+
+.memories-button {
+  background: linear-gradient(45deg, #a78bfa, #8b5cf6);
+}
+
+.feelings-button {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+}
+
+.question-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.question-card {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 600px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.question-card:hover {
+  transform: scale(1.05);
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.question-icon {
+  width: 48px;
+  height: 48px;
+  color: white;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.question-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.question-text {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  flex: 1;
+}
+
+.decorative-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.decorative-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.card-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  color: white;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.card-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+/* Icon Sizes */
+.icon-small {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-medium {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-large {
+  width: 32px;
+  height: 32px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: 2.5rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .welcome-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .interactive-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .time-display {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: 2rem;
+  }
+  
+  .home-content {
+    padding: 16px;
+  }
+  
+  .main-content {
+    padding: 16px;
+  }
+  
+  .time-card {
+    padding: 24px;
+  }
+  
+  .question-card {
+    padding: 24px;
   }
 }
